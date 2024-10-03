@@ -1,4 +1,5 @@
 {
   "project_name": "template-base",
+  "include_docs_dir": true,
   "_copy_without_render": [".github/**/*"]
 }
