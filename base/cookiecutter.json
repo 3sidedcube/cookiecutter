@@ -1,5 +1,9 @@
 {
-  "project_name": "template-base",
-  "include_docs_dir": true,
-  "_copy_without_render": [".github/**/*"]
+  "client": "example-client",
+  "project": "example-project",
+  "description": "A headline for the project or component",
+  "include_docs_dir": false,
+  "_copy_without_render": [".github/**/*"],
+
+  "__name": "{{ cookiecutter.client | lower }}-{{ cookiecutter.project | lower }}"
 }

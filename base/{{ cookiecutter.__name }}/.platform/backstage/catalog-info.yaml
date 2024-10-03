@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: {{ cookiecutter.__name }}
+  description: {{ cookiecutter.description }}
+  annotations:
+    backstage.io/techdocs-ref: dir:../..
+    github.com/project-slug: 3sidedcube/{{ cookiecutter.__name }}
+spec:
+  type: service
+  lifecycle: production
+  owner: 3sidedcube/{{ cookiecutter.__name }}

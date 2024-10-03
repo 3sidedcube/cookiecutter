@@ -1,18 +1,13 @@
-infrastructure:
-  - changed-files:
-      - any-glob-to-any-file:
-          - infrastructure/**/*
-
 documentation:
   - changed-files:
       - any-glob-to-any-file:
           - docs/**/*
-          - .adr-dir
-          - README.md
+          - "**/*/README.md"
 ci:
   - changed-files:
       - any-glob-to-any-file:
           - .github/**/*
+          - .platform/**/*
 
 source:
   - changed-files:
