@@ -1,0 +1,25 @@
+infrastructure:
+  - changed-files:
+      - any-glob-to-any-file:
+          - infrastructure/**/*
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - docs/**/*
+          - .adr-dir
+          - README.md
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/**/*
+
+source:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/**/*
+
+test:
+  - changed-files:
+      - any-glob-to-any-file:
+          - test/**/*
