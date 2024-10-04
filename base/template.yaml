@@ -1,0 +1,56 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: example-nodejs-template
+  title: Example Node.js Template
+  description: An example template for the scaffolder that creates a simple Node.js service
+spec:
+  owner: group:3sidedcube/platform
+  type: service
+  parameters:
+    - title: Config
+      properties:
+        client:
+          title: Client
+          type: string
+          ui:autofocus: true
+        project:
+          title: Project
+          type: string
+        description:
+          title: Description
+          type: string
+        include_docs_dir:
+          title: Include documentation directory
+          type: boolean
+      required:
+        - client
+        - project
+        - description
+        - include_docs_dir
+  steps:
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
+      input:
+        cookiecutterCompat: true
+        url: ./skeleton
+        values:
+          client: ${{ parameters.client }}
+          project: ${{ parameters.projectj }}
+          description: ${{ parameters.description }}
+          include_docs_dir: ${{ parameters.include_docs_dir }}
+
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ["github.com"]
+        repoUrl: github.com?owner=3sidedcube&repo=${{ parameters.client }}-${{ parameters.project }}
+        defaultBranch: main
+        repoVisibility: private
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
