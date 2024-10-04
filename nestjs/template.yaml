@@ -68,11 +68,11 @@ spec:
         repoVisibility: private
 
     - id: register
-      name: Register to catalog
+      name: Register
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-        catalogInfoPath: ./.platform/backstage/catalog-info.yaml
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: "/.platform/backstage/catalog-info.yaml"
 
   output:
     links:
