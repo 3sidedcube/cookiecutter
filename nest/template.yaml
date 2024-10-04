@@ -1,9 +1,9 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: example-nodejs-template
-  title: Example Node.js Template
-  description: An example template for the scaffolder that creates a simple Node.js service
+  name: nestjs-template
+  title: Nest.js Template
+  description: Build a NestJS API with options for GraphQL
 spec:
   owner: group:3sidedcube/platform
   type: service
@@ -35,11 +35,20 @@ spec:
         cookiecutterCompat: true
         copyWithoutTemplating:
           - .github/**/*
-        url: ./skeleton
+        url: ../common/base
         values:
           client: ${{ parameters.client }}
           project: ${{ parameters.projectj }}
           description: ${{ parameters.description }}
+
+    - id: fetch-nestjs
+      name: Fetch Nest.js
+      action: fetch:template
+      input:
+        cookiecutterCompat: true
+        copyWithoutTemplating:
+          - .github/**/*
+        url: ./skeleton
 
     - id: fetch-docs
       name: Fetch Docs
