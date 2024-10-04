@@ -34,7 +34,7 @@ spec:
       action: fetch:template
       input:
         cookiecutterCompat: true
-        url: ../../base
+        url: ./skeleton
         values:
           client: ${{ parameters.client }}
           project: ${{ parameters.projectj }}
