@@ -4,6 +4,5 @@
   "description": "A headline for the project or component",
   "include_docs_dir": false,
   "_copy_without_render": [".github/**/*"],
-
   "__name": "{{ cookiecutter.client | lower }}-{{ cookiecutter.project | lower }}"
 }
