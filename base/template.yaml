@@ -20,26 +20,23 @@ spec:
         description:
           title: Description
           type: string
-        include_docs_dir:
-          title: Include documentation directory
-          type: boolean
       required:
         - client
         - project
         - description
-        - include_docs_dir
   steps:
     - id: fetch-base
       name: Fetch Base
       action: fetch:template
       input:
         cookiecutterCompat: true
+        copyWithoutTemplating:
+          - .github/**/*
         url: ./skeleton
         values:
           client: ${{ parameters.client }}
           project: ${{ parameters.projectj }}
           description: ${{ parameters.description }}
-          include_docs_dir: ${{ parameters.include_docs_dir }}
 
     - id: publish
       name: Publish
