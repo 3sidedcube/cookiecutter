@@ -20,6 +20,9 @@ spec:
         description:
           title: Description
           type: string
+        include_docs_dir:
+          title: Include docs directory
+          type: boolean
       required:
         - client
         - project
@@ -37,6 +40,14 @@ spec:
           client: ${{ parameters.client }}
           project: ${{ parameters.projectj }}
           description: ${{ parameters.description }}
+
+    - id: fetch-docs
+      name: Fetch Docs
+      action: fetch:plain
+      if: ${{ parameters.include_docs_dir }}
+      input:
+        url: ../common/docs
+        targetPath: docs
 
     - id: publish
       name: Publish
