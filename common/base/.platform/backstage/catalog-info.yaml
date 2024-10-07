@@ -4,6 +4,7 @@ metadata:
   name: {{ cookiecutter.name }}
   description: {{ cookiecutter.description }}
   annotations:
+    backstage.io/source-location: url:https://github.com/3sidedcube/{{ cookiecutter.name }}
     backstage.io/techdocs-ref: dir:../..
     github.com/project-slug: 3sidedcube/{{ cookiecutter.name }}
 spec:
