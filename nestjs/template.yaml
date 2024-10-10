@@ -10,12 +10,8 @@ spec:
   parameters:
     - title: Config
       properties:
-        client:
-          title: Client
-          type: string
-          ui:autofocus: true
-        project:
-          title: Project
+        name:
+          title: Name
           type: string
         description:
           title: Description
@@ -24,8 +20,7 @@ spec:
           title: Include docs directory
           type: boolean
       required:
-        - client
-        - project
+        - name
         - description
   steps:
     - id: fetch-base
@@ -37,9 +32,7 @@ spec:
           - .github/**/*
         url: ../common/base
         values:
-          client: ${{ parameters.client }}
-          project: ${{ parameters.projectj }}
-          name: ${{ parameters.client }}-${{ parameters.project }}
+          name: ${{ parameters.name }}
           description: ${{ parameters.description }}
 
     - id: fetch-nestjs
@@ -59,17 +52,17 @@ spec:
         url: ../common/docs
         targetPath: docs
 
-    - id: publish
-      name: Publish
+    - id: create-repo
+      name: Create repo
       action: publish:github
       input:
         allowedHosts: ["github.com"]
-        repoUrl: github.com?owner=3sidedcube&repo=${{ parameters.client }}-${{ parameters.project }}
+        repoUrl: github.com?owner=3sidedcube&repo=${{ parameters.name }}
         defaultBranch: main
         repoVisibility: private
 
-    - id: register
-      name: Register
+    - id: register-entity
+      name: Register entity
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}

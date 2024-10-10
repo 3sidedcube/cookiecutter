@@ -1,3 +1,3 @@
-**{{ cookiecutter.client }} | {{ cookiecutter.project }}**
+**{{ cookiecutter.name }}**
 
 {{ cookiecutter.description }}
