@@ -1,0 +1,58 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: generic-template
+  title: Generic Template
+  description: Create an empty project with base files
+spec:
+  owner: group:3sidedcube/platform
+  type: service
+  parameters:
+    - title: Config
+      properties:
+        name:
+          title: Name
+          type: string
+        description:
+          title: Description
+          type: string
+        include_docs_dir:
+          title: Include docs directory
+          type: boolean
+      required:
+        - name
+        - description
+  steps:
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
+      input:
+        cookiecutterCompat: true
+        copyWithoutTemplating:
+          - .github/**/*
+        url: ../common/base
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+
+    - id: fetch-docs
+      name: Fetch Docs
+      action: fetch:plain
+      if: ${{ parameters.include_docs_dir }}
+      input:
+        url: ../common/docs
+        targetPath: docs
+
+    - id: create-repo
+      name: Create repo
+      action: publish:github
+      input:
+        allowedHosts: ["github.com"]
+        repoUrl: github.com?owner=3sidedcube&repo=${{ parameters.name }}
+        defaultBranch: main
+        repoVisibility: private
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
