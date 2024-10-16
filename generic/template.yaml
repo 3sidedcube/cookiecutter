@@ -16,9 +16,6 @@ spec:
         description:
           title: Description
           type: string
-        include_docs_dir:
-          title: Include docs directory
-          type: boolean
       required:
         - name
         - description
@@ -35,14 +32,6 @@ spec:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
 
-    - id: fetch-docs
-      name: Fetch Docs
-      action: fetch:plain
-      if: ${{ parameters.include_docs_dir }}
-      input:
-        url: ../common/docs
-        targetPath: docs
-
     - id: create-repo
       name: Create repo
       action: publish:github
@@ -52,7 +41,14 @@ spec:
         defaultBranch: main
         repoVisibility: private
 
+    - id: register-entity
+      name: Register entity
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['create-repo'].output.repoContentsUrl }}
+        catalogInfoPath: /.platform/backstage/catalog-info.yaml
+
   output:
     links:
       - title: Repository
-        url: ${{ steps['publish'].output.remoteUrl }}
+        url: ${{ steps['create-repo'].output.remoteUrl }}
