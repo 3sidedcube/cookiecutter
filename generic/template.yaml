@@ -36,9 +36,14 @@ spec:
       name: Create repo
       action: publish:github
       input:
-        allowedHosts: ["github.com"]
-        repoUrl: github.com?owner=3sidedcube&repo=${{ parameters.name }}
+        allowMergeCommit: false
+        allowRebaseMerge: false
         defaultBranch: main
+        deleteBranchOnMerge: true
+        hasWiki: false
+        hasIssues: false
+        protectDefaultBranch: false
+        repoUrl: github.com?owner=3sidedcube&repo=${{ parameters.name }}
         repoVisibility: private
 
     - id: register-entity
