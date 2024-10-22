@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: {{ cookiecutter.name }}
-  description: {{ cookiecutter.description }}
+  name: { { cookiecutter.name } }
+  description: { { cookiecutter.description } }
   annotations:
     backstage.io/source-location: url:https://github.com/3sidedcube/{{ cookiecutter.name }}
     backstage.io/techdocs-ref: dir:../..
@@ -10,4 +10,4 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: 3sidedcube/{{ cookiecutter.name }}
+  owner: 3sidedcube/platform
