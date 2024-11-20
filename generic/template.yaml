@@ -16,9 +16,17 @@ spec:
         description:
           title: Description
           type: string
+        entity_type:
+          title: Type
+          type: string
+          default: Component
+          enum:
+            - System
+            - Component
       required:
         - name
         - description
+        - entity_type
   steps:
     - id: fetch-base
       name: Fetch Base
