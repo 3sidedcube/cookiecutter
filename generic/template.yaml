@@ -13,12 +13,15 @@ spec:
         name:
           title: Name
           type: string
+          description: This will be the name of the repository.
         description:
           title: Description
           type: string
+          description: Some information to outline what this repository is.
         entity_type:
           title: Type
           type: string
+          description: A 'Component' belongs to a 'System' being an API, website, script, job, etc.
           default: Component
           enum:
             - System
@@ -47,6 +50,7 @@ spec:
       input:
         allowMergeCommit: false
         allowRebaseMerge: false
+        description: ${{ parameters.description }}
         defaultBranch: main
         deleteBranchOnMerge: true
         hasWiki: false
