@@ -18,8 +18,18 @@ spec:
           title: Description
           type: string
           description: Some information to outline what this repository is.
+        team:
+          title: Team
+          type: string
+          description: The team that owns this repository.
+          enum:
+            - fed
+            - bed
+            - ios
+            - android
+            - platform
         entity_type:
-          title: Type
+          title: Entity Type
           type: string
           description: A 'Component' belongs to a 'System' being an API, website, script, job, etc.
           default: Component
@@ -29,7 +39,31 @@ spec:
       required:
         - name
         - description
+        - team
         - entity_type
+      dependencies:
+        entity_type:
+          oneOf:
+            - properties:
+                entity_type:
+                  enum:
+                    - System
+            - properties:
+                entity_type:
+                  enum:
+                    - Component
+                component_type:
+                  title: Component Type
+                  type: string
+                  description: The purpose of the 'Component'.
+                  default: service
+                  enum:
+                    - service
+                    - function
+                    - website
+              required:
+                - component_type
+
   steps:
     - id: fetch-base
       name: Fetch Base
@@ -43,6 +77,8 @@ spec:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
           entity_type: ${{ parameters.entity_type }}
+          component_type: ${{ parameters.component_type }}
+          team: ${{ parameters.team }}
 
     - id: create-repo
       name: Create repo
