@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: { { cookiecutter.entity_type } }
 metadata:
-  name: {{ cookiecutter.name }}
-  description: {{ cookiecutter.description }}
+  name: { { cookiecutter.name } }
+  description: { { cookiecutter.description } }
   annotations:
     backstage.io/source-location: url:https://github.com/3sidedcube/{{ cookiecutter.name }}
     backstage.io/techdocs-ref: dir:../..

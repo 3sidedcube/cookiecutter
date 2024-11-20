@@ -39,6 +39,7 @@ spec:
         values:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
+          entity_type: ${{ parameters.entity_type }}
 
     - id: create-repo
       name: Create repo
@@ -52,6 +53,8 @@ spec:
         hasIssues: false
         protectDefaultBranch: false
         repoUrl: github.com?owner=3sidedcube&repo=${{ parameters.name }}
+        repoVariables:
+          BACKSTAGE_ENTITY: default/${{ parameters.entity_type }}/${{ parameters.name }}
         repoVisibility: private
 
     - id: register-entity
