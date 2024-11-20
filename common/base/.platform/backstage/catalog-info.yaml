@@ -9,7 +9,7 @@ metadata:
     github.com/project-slug: 3sidedcube/{{ cookiecutter.name }}
 spec:
   owner: 3sidedcube/{{ cookiecutter.team }}
-  {% if cookiecutter.entity_type == "Component" %}
+  {%- if cookiecutter.entity_type == "Component" %}
   type: {{ cookiecutter.component_type }}
   lifecycle: production
-  {% endif %}
+  {%- endif %}
