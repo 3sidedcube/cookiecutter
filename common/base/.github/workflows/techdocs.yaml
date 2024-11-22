@@ -6,6 +6,11 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+
 jobs:
   techdocs:
     name: Publish techdocs
@@ -20,11 +25,11 @@ jobs:
         with:
           node-version: 22
 
-      - name: Configure AWS credentials (ECR)
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ vars.TECHDOCS_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ vars.TECHDOCS_AWS_CI_ROLE }}
+          role-session-name: ${{ github.run_id }}
           aws-region: ${{ vars.TECHDOCS_AWS_REGION }}
 
       - name: Generate docs
