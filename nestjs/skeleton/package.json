@@ -2,7 +2,7 @@
   "name": "{{ cookiecutter.name }}",
   "version": "0.1.0",
   "description": "{{ cookiecutter.description }}",
-  "author": "{{ cookiecutter.team | upper }} <cookiecutter.team@3sidedcube.com> (https://3sidedcube.com)",
+  "author": "BED <bed@3sidedcube.com> (https://3sidedcube.com)",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
