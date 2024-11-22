@@ -5,7 +5,7 @@ metadata:
   title: Nest.js Template
   description: Build a NestJS API with options for GraphQL.
 spec:
-  owner: group:3sidedcube/bed
+  owner: group:3sidedcube/backend
   type: service
   parameters:
     - title: Config
@@ -35,7 +35,7 @@ spec:
           description: ${{ parameters.description }}
           entity_type: Component
           component_type: service
-          team: bed
+          team: backend
 
     - id: fetch-nestjs
       name: Fetch Nest.js

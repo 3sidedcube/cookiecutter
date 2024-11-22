@@ -23,8 +23,8 @@ spec:
           type: string
           description: The team that owns this repository.
           enum:
-            - fed
-            - bed
+            - frontend
+            - backend
             - ios
             - android
             - platform
