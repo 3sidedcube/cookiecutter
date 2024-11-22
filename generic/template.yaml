@@ -72,7 +72,6 @@ spec:
         cookiecutterCompat: true
         copyWithoutTemplating:
           - .github/**/*
-        templateFileExtension: true
         url: ../common/base
         values:
           name: ${{ parameters.name }}
