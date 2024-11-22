@@ -1,8 +1,8 @@
 {
-  "name": "example-nestjs-template",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "name": "{{ cookiecutter.name }}",
+  "version": "0.1.0",
+  "description": "{{ cookiecutter.description }}",
+  "author": "{{ cookiecutter.team | upper }} <cookiecutter.team@3sidedcube.com> (https://3sidedcube.com)",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
