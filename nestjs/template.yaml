@@ -37,12 +37,12 @@ spec:
           component_type: service
           team: backend
 
-    - id: fetch-nestjs
-      name: Fetch Nest.js
+    - id: fetch-nestjs-base
+      name: Fetch Nest.js Base
       action: fetch:template
       input:
         cookiecutterCompat: true
-        url: ./skeleton
+        url: ./skeleton/base
         values:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
