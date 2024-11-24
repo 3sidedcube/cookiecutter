@@ -18,6 +18,35 @@ spec:
           title: Description
           type: string
           description: Some information to outline what this repository is.
+        createAWSAccount:
+          title: Create AWS Account
+          type: boolean
+          description: Create an initial test AWS account to sandbox this project.
+      dependencies:
+        createAWSAccount:
+          oneOf:
+            - properties:
+                createAWSAccount:
+                  const: false
+            - properties:
+                createAWSAccount:
+                  const: true
+                client:
+                  title: Client
+                  type: string
+                  description: The name of the client used for AWS tags.
+                project:
+                  title: Project
+                  type: string
+                  description: The name of the project used for AWS tags.
+                email:
+                  title: Email
+                  type: string
+                  description: The email used for the AWS account.
+              required:
+                - client
+                - project
+                - email
       required:
         - name
         - description
@@ -46,6 +75,16 @@ spec:
         values:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
+
+    - id: create-aws-account
+      name: Create AWS Account
+      action: aws:organization:create-account
+      if: ${{ parameters.createAWSAccount }}
+      input:
+        client: ${{ parameters.client }}
+        project: ${{ parameters.project }}
+        environment: test
+        email: ${{ parameters.email }}
 
     - id: create-repo
       name: Create repo
