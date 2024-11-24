@@ -1,0 +1,19 @@
+apiVersion: idp.3sidedcube.com/v1
+kind: App
+metadata:
+  name: {{ cookiecutter.client }}-{{ cookiecutter.project }}-test
+spec:
+  accountID: {{ cookiecutter.accountID }}
+  environment: test
+  name: {{ cookiecutter.client }}-{{ cookiecutter.project }}
+  region: {{ cookiecutter.region }}
+  database:
+    - type: postgres16
+      bastion:
+        enabled: true
+  service:
+    env:
+      - name: DEBUG
+        value: false
+  dns:
+    domainName: {{ cookiecutter.client }}-{{ cookiecutter.project }}-test.cubeapis.com

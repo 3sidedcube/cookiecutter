@@ -43,10 +43,15 @@ spec:
                   title: Email
                   type: string
                   description: The email used for the AWS account.
+                region:
+                  title: Region
+                  type: string
+                  description: The AWS region to deploy the service in.
               required:
                 - client
                 - project
                 - email
+                - region
       required:
         - name
         - description
@@ -85,6 +90,20 @@ spec:
         project: ${{ parameters.project }}
         environment: test
         email: ${{ parameters.email }}
+
+    - id: fetch-argocd-manifest
+      name: Fetch ArgoCD manifest
+      action: fetch:template
+      if: ${{ parameters.createAWSAccount }}
+      input:
+        cookiecutterCompat: true
+        url: ../common/argocd
+        targetPath: ./.platform/argocd
+        values:
+          accountID: ${{ steps['create-aws-account'].output.accountID }}
+          client: ${{ parameters.client }}
+          project: ${{ parameters.project }}
+          region: ${{ parameters.region }}
 
     - id: create-repo
       name: Create repo
