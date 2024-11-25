@@ -33,7 +33,9 @@ jobs:
           aws-region: ${{ vars.TECHDOCS_AWS_REGION }}
 
       - name: Generate docs
-        run: npx @techdocs/cli generate
+        run: |
+          npx @techdocs/cli generate \
+            --legacyCopyReadmeMdToIndexMd
 
       - name: Publish docs
         run: |
