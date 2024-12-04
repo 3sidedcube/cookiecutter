@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: generic-template
   title: Generic Template
-  description: Create an empty project with base files
+  description: Create an empty project with base files and directories
 spec:
   owner: group:3sidedcube/platform
   type: service
