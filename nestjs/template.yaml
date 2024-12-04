@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: nestjs-template
   title: Nest.js Template
-  description: Build a NestJS API with options for GraphQL.
+  description: Build a NestJS API with options for GraphQL and AWS.
 spec:
   owner: group:3sidedcube/backend
   type: service
