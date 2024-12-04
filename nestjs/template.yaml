@@ -127,15 +127,6 @@ spec:
       input:
         repoContentsUrl: ${{ steps['create-repo'].output.repoContentsUrl }}
         catalogInfoPath: /.platform/backstage/catalog-info.yaml
-    #
-    # - id: create-argocd-application
-    #   name: Create ArgoCD application
-    #   action: argocd:application:create
-    #   input:
-    #     client: ${{ parameters.client }}
-    #     project: ${{ parameters.project }}
-    #     environment: ${{ parameters.environment }}
-    #     repoURL: ${{ steps['create-repo'].output.remoteUrl }}
 
     - id: create-argocd-application
       name: Create ArgoCD application
@@ -144,7 +135,7 @@ spec:
         client: ${{ parameters.client }}
         project: ${{ parameters.project }}
         environment: test
-        email: ${{ parameters.email }}
+        repoURL: ${{ parameters.email }}
 
   output:
     links:
