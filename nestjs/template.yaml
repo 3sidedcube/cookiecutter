@@ -99,7 +99,7 @@ spec:
         url: ../common/argocd
         targetPath: ./.platform/argocd
         values:
-          accountID: ${{ steps['create-aws-account'].output.accountID }}
+          accountID: ${{ steps['create-aws-account'].output.accountID || "<Add Account ID>" }}
           client: ${{ parameters.client }}
           project: ${{ parameters.project }}
           region: ${{ parameters.region }}
