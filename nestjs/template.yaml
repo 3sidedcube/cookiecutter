@@ -135,7 +135,7 @@ spec:
         client: ${{ parameters.client }}
         project: ${{ parameters.project }}
         environment: test
-        url: https://3sidedcube.com
+        url: ${{ steps['create-repo'].output.remoteUrl }}
 
   output:
     links:
