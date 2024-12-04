@@ -139,7 +139,7 @@ spec:
 
     - id: create-argocd-application
       name: Create ArgoCD application
-      action: aws:organization:create-account
+      action: argocd:application:create
       input:
         client: ${{ parameters.client }}
         project: ${{ parameters.project }}
