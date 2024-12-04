@@ -127,15 +127,25 @@ spec:
       input:
         repoContentsUrl: ${{ steps['create-repo'].output.repoContentsUrl }}
         catalogInfoPath: /.platform/backstage/catalog-info.yaml
+    #
+    # - id: create-argocd-application
+    #   name: Create ArgoCD application
+    #   action: argocd:application:create
+    #   input:
+    #     client: ${{ parameters.client }}
+    #     project: ${{ parameters.project }}
+    #     environment: ${{ parameters.environment }}
+    #     repoURL: ${{ steps['create-repo'].output.remoteUrl }}
 
-    - id: create-argocd-application
-      name: Create ArgoCD application
-      action: argocd:application:create
+    - id: create-aws-account
+      name: Create AWS Account
+      action: aws:organization:create-account
+      if: ${{ parameters.createAWSAccount }}
       input:
         client: ${{ parameters.client }}
         project: ${{ parameters.project }}
-        environment: ${{ parameters.environment }}
-        repoURL: ${{ steps['create-repo'].output.remoteUrl }}
+        environment: test
+        email: ${{ parameters.email }}
 
   output:
     links:
