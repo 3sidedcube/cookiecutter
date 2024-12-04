@@ -137,10 +137,9 @@ spec:
     #     environment: ${{ parameters.environment }}
     #     repoURL: ${{ steps['create-repo'].output.remoteUrl }}
 
-    - id: create-aws-account
-      name: Create AWS Account
+    - id: create-argocd-application
+      name: Create ArgoCD application
       action: aws:organization:create-account
-      if: ${{ parameters.createAWSAccount }}
       input:
         client: ${{ parameters.client }}
         project: ${{ parameters.project }}
