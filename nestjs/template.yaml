@@ -18,6 +18,14 @@ spec:
           title: Description
           type: string
           description: Some information to outline what this repository is.
+        client:
+          title: Client
+          type: string
+          description: The name of the client used for AWS tags.
+        project:
+          title: Project
+          type: string
+          description: The name of the project used for AWS tags.
         createAWSAccount:
           title: Create AWS Account
           type: boolean
@@ -31,14 +39,6 @@ spec:
             - properties:
                 createAWSAccount:
                   const: true
-                client:
-                  title: Client
-                  type: string
-                  description: The name of the client used for AWS tags.
-                project:
-                  title: Project
-                  type: string
-                  description: The name of the project used for AWS tags.
                 email:
                   title: Email
                   type: string
@@ -48,13 +48,13 @@ spec:
                   type: string
                   description: The AWS region to deploy the service in.
               required:
-                - client
-                - project
                 - email
                 - region
       required:
         - name
         - description
+        - client
+        - project
   steps:
     - id: fetch-base
       name: Fetch Base
@@ -94,16 +94,15 @@ spec:
     - id: fetch-argocd-manifest
       name: Fetch ArgoCD manifest
       action: fetch:template
-      if: ${{ parameters.createAWSAccount }}
       input:
         cookiecutterCompat: true
         url: ../common/argocd
         targetPath: ./.platform/argocd
         values:
-          accountID: ${{ steps['create-aws-account'].output.accountID }}
+          accountID: ${{ steps['create-aws-account'].output.accountID || "<Add AWS Account ID>" }}
           client: ${{ parameters.client }}
           project: ${{ parameters.project }}
-          region: ${{ parameters.region }}
+          region: ${{ parameters.region || "<Add AWS Region>" }}
 
     - id: create-repo
       name: Create repo
@@ -132,7 +131,6 @@ spec:
     - id: create-argocd-application
       name: Create ArgoCD application
       action: argocd:application:create
-      if: ${{ parameters.createAWSAccount }}
       input:
         client: ${{ parameters.client }}
         project: ${{ parameters.project }}
