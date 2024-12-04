@@ -130,12 +130,12 @@ spec:
 
     - id: create-argocd-application
       name: Create ArgoCD application
-      action: arogcd:application:create
+      action: argocd:application:create
       input:
         client: ${{ parameters.client }}
         project: ${{ parameters.project }}
         environment: ${{ parameters.environment }}
-        repoURL: ${{ steps['create-repo'].output.repoContentsUrl }}
+        repoURL: ${{ steps['create-repo'].output.remoteUrl }}
 
   output:
     links:
