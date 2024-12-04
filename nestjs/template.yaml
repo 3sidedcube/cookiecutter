@@ -135,7 +135,7 @@ spec:
         client: ${{ parameters.client }}
         project: ${{ parameters.project }}
         environment: test
-        repoURL: ${{ parameters.email }}
+        repoURL: ${{ steps['create-repo'].output.remoteUrl }}
 
   output:
     links:
