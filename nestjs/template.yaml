@@ -128,15 +128,15 @@ spec:
         repoContentsUrl: ${{ steps['create-repo'].output.repoContentsUrl }}
         catalogInfoPath: /.platform/backstage/catalog-info.yaml
 
-    # - id: create-argocd-application
-    #   name: Create ArgoCD application
-    #   action: arogcd:application:create
-    #   input:
-    #     client: ${{ parameters.client }}
-    #     project: ${{ parameters.project }}
-    #     environment: ${{ parameters.environment }}
-    #     repoURL: ${{ steps['create-repo'].output.repoContentsUrl }}
-    #
+    - id: create-argocd-application
+      name: Create ArgoCD application
+      action: arogcd:application:create
+      input:
+        client: ${{ parameters.client }}
+        project: ${{ parameters.project }}
+        environment: ${{ parameters.environment }}
+        repoURL: ${{ steps['create-repo'].output.repoContentsUrl }}
+
   output:
     links:
       - title: Repository
