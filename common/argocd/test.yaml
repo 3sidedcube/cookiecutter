@@ -16,4 +16,4 @@ spec:
       - name: DEBUG
         value: false
   dns:
-    domainName: {{ cookiecutter.client }}-{{ cookiecutter.project }}-test.cubeapis.com
+    domainName: {{ cookiecutter.client }}-{{ cookiecutter.project }}-test.idp.cubeapis.com
